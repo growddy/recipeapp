@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { SignInButton, UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 export const Navigation = () => {
     const pathname = usePathname();
@@ -8,7 +9,7 @@ return (
     <nav className="flex justify-between items-center p-4">
   {/* Left-aligned links */}
   <div className="flex items-center gap-4">
-    <a className="header title font-[family-name:var(--font-geist-mono)] text-xl">
+    <a className="header title font-[family-name:var(--font-geist-mono)] text-4xl">
       PlaceholderName
     </a>
     <Link
@@ -30,22 +31,21 @@ return (
       Explore
     </Link>
   </div>
-
-  {/* Right-aligned links */}
+  
+  <SignedOut>
+  <SignInButton mode="modal" />
+  </SignedOut>
+  <SignedIn>
   <div className="flex items-center gap-4">
     <Link
       href="/login"
       className={pathname === "/login" ? "font-bold text-blue-700" : "text-blue-100"}
     >
-      Log In
-    </Link>
-    <Link
-      href="/register"
-      className={pathname === "/register" ? "font-bold text-blue-700" : "text-blue-100"}
-    >
-      Register
+      My Profile
     </Link>
   </div>
+  <UserButton />
+  </SignedIn>
 </nav>  
 )
 }
