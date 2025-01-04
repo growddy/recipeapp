@@ -6,10 +6,10 @@ import { SignInButton, UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
 export const Navigation = () => {
     const pathname = usePathname();
 return (
-    <nav className="flex justify-between items-center p-4">
+    <nav className="flex justify-between items-center p-4 bg-black">
   {/* Left-aligned links */}
   <div className="flex items-center gap-4">
-    <a className="header title font-[family-name:var(--font-geist-mono)] text-4xl">
+    <a className="header title text-4xl">
       CookCraft
     </a>
     <Link
