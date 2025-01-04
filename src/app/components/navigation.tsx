@@ -10,7 +10,7 @@ return (
   {/* Left-aligned links */}
   <div className="flex items-center gap-4">
     <a className="header title font-[family-name:var(--font-geist-mono)] text-4xl">
-      PlaceholderName
+      CookCraft
     </a>
     <Link
       href="/"
@@ -36,16 +36,16 @@ return (
   <SignInButton mode="modal" />
   </SignedOut>
   <SignedIn>
-  <div className="flex items-center gap-4">
-    <Link
-      href="/login"
-      className={pathname === "/login" ? "font-bold text-blue-700" : "text-blue-100"}
-    >
-      My Profile
-    </Link>
-  </div>
-  <UserButton />
-  </SignedIn>
+    <div className="flex items-center gap-4">
+        <Link
+        href="/myprofile"
+        className={pathname === "/myprofile" ? "font-bold text-blue-700" : "text-blue-100"}
+        >
+        My Profile
+        </Link>
+        <UserButton />
+    </div>
+</SignedIn>
 </nav>  
 )
 }
