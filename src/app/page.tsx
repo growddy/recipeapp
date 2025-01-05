@@ -6,7 +6,9 @@ export default function Home() {
       {/* Section 1 Intro */}
       <section className="w-full h-[80vh] sm:h-[70vh] flex items-center justify-center flex-col">
         <div className="p-8 text-center">
-          <h2 className="text-6xl font-bold mb-4">All your recipe needs in one place</h2>
+          <h2 className="text-6xl font-bold mb-4">
+            All your recipe needs in one place
+          </h2>
           <p className="text-lg text-white">
             This section takes up the full width and height of the viewport. Add your content here.
           </p>
