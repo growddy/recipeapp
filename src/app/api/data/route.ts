@@ -14,5 +14,5 @@ export async function GET() {
             data: { userId: userId, username: user?.username },
         },
         { status: 200}
-    )
+    );
 }

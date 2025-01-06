@@ -64,12 +64,17 @@ export async function POST(req: Request) {
 
     const newUser = await createUser(user);
     
-    if(newUser) {
+    if (newUser) {
+      try {
         await (await clerkClient()).users.updateUserMetadata(id, {
-            publicMetadata: {
-                userId: newUser._id,
-            },
+          publicMetadata: {
+            userId: newUser._id,
+          },
         });
+      } catch (err) {
+        console.error('Error updating Clerk user metadata:', err);
+        return new Response('Error updating Clerk metadata', { status: 500 });
+      }
     }
 
     return NextResponse.json({ message: "New user created", user: newUser});
