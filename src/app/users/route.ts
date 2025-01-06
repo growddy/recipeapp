@@ -1,3 +1,4 @@
+/*
 export const users = [
     { id: 1, name: "User 1" },
     { id: 2, name: "User 2" },
@@ -21,3 +22,4 @@ export async function POST(request: Request) {
         status: 201,
     });
 }
+*/
