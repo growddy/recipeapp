@@ -3,8 +3,7 @@ import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import { useState } from "react";
 import LoadingSpinner from "../../components/loadingspinner";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "../../components/ui/card";
-import { useRouter } from "next/router";
+import { Card, CardContent, CardHeader, CardFooter } from "../../components/ui/card";
 import { generateRecipes } from "@/app/actions";
 
 export default function Home() {
@@ -14,7 +13,7 @@ export default function Home() {
 
 	async function onSubmit() {
 		setIsLoading(true)
-		let r = await generateRecipes(prompt)
+		const r = await generateRecipes(prompt)
 		setRecipes(r)
 		setIsLoading(false)
 	}
