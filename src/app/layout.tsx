@@ -36,7 +36,7 @@ export default function RootLayout({
           </header>
           {children}
           <footer className="bg-slate-900 text-white p4 text-center">
-            <p>Edward</p>
+            <p> Created By Edward Jiang</p>
           </footer>
         </body>
       </html>
