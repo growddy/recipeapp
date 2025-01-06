@@ -1,3 +1,4 @@
+/*
 import { users } from "../route"
 
 export async function GET(
@@ -8,3 +9,4 @@ export async function GET(
     const user = users.find((user) => user.id === parseInt(id));
     return Response.json(user);
 }
+*/
