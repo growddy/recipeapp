@@ -6,10 +6,17 @@ import LoadingSpinner from "../../components/loadingspinner";
 import { Card, CardContent, CardHeader, CardFooter } from "../../components/ui/card";
 import { generateRecipes } from "@/app/actions";
 
+interface Recipe {
+  name: string;
+  description: string;
+  ingredients: string[];
+  instructions: string[];
+}
+
 export default function Home() {
   const [prompt, setPrompt] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [recipes, setRecipes] = useState<any[]>([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
 	async function onSubmit() {
 		setIsLoading(true)
