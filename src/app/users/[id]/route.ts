@@ -1,4 +1,4 @@
-import {users } from "../route"
+import { users } from "../route"
 
 export async function GET(
     _request: Request, 
