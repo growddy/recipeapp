@@ -2,24 +2,29 @@ import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema({
     clerkId: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
     },
     email: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     username: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
     },
-    metadata: {
-        type: Object, // Store metadata as a JSON object
-        default: {},  // Optional: Default empty object
+    photo: {
+      type: String,
+      required: true,
     },
-});
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+  });
 
 const User = models?.User || model("User", UserSchema);
 

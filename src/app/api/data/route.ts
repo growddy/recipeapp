@@ -13,6 +13,6 @@ export async function GET() {
             message: "Authenticated",
             data: { userId: userId, username: user?.username },
         },
-        { status: 200}
+        { status: 200 }
     );
 }
