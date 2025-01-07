@@ -92,6 +92,7 @@ import { headers } from 'next/headers'
 import { clerkClient, WebhookEvent } from '@clerk/nextjs/server'
 import { createUser } from '../../../../../actions/user.action'
 import { NextResponse } from 'next/server'
+import User from '../../../../../modals/user.modal'
 
 export async function POST(req: Request) {
   const SIGNING_SECRET = process.env.SIGNING_SECRET
@@ -155,26 +156,33 @@ export async function POST(req: Request) {
 
     if (newUser) {
       try {
-        // Get Clerk client once for efficiency
-        const client = await clerkClient()
-
-        // Update user metadata in Clerk
-        await client.users.updateUserMetadata(id, {
+        const client = await clerkClient();
+    
+        // Update Clerk user metadata
+        const updatedClerkMetadata = {
           publicMetadata: {
-            userId: newUser._id,
+            userId: newUser._id, // MongoDB's generated ID
           },
-        })
-
+        };
+    
+        await client.users.updateUserMetadata(id, updatedClerkMetadata);
+    
+        // Save metadata in MongoDB (optional if you want it locally as well)
+        newUser.metadata = updatedClerkMetadata.publicMetadata;
+    
+        // Update the user in MongoDB with the metadata
+        await User.findByIdAndUpdate(newUser._id, { metadata: updatedClerkMetadata.publicMetadata });
+    
         return new NextResponse(
-          JSON.stringify({ message: "New user created", user: newUser }),
+          JSON.stringify({ message: "New user created and metadata updated", user: newUser }),
           { status: 200 }
-        )
+        );
       } catch (err) {
-        console.error('Error updating Clerk user metadata:', err)
-        return new NextResponse('Error updating Clerk metadata', { status: 500 })
+        console.error('Error updating Clerk user metadata:', err);
+        return new NextResponse('Error updating Clerk metadata', { status: 500 });
       }
     } else {
-      return new NextResponse('Error creating user', { status: 500 })
+      return new NextResponse('Error creating user', { status: 500 });
     }
   }
 

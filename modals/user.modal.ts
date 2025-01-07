@@ -14,7 +14,11 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-    }
+    },
+    metadata: {
+        type: Object, // Store metadata as a JSON object
+        default: {},  // Optional: Default empty object
+    },
 });
 
 const User = models?.User || model("User", UserSchema);
