@@ -46,9 +46,9 @@ export default function Home() {
       {/* Horizontal 3 */}
       <section className="w-full h-[80vh] sm:h-[60vh] flex items-center justify-between bg-gray-300">
         <div className="flex-1 p-8">
-          <h2 className="text-4xl font-bold mb-4">Section 3 Title</h2>
+          <h2 className="text-4xl font-bold mb-4">Placeholder Section</h2>
           <p className="text-lg text-gray-700">
-            Add as many full-width sections as you need by replicating this structure.
+            input text
           </p>
         </div>
       </section>
