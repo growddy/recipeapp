@@ -21,7 +21,7 @@ export const connect = async () => {
 
     cached.promise = 
     cached.promise || mongoose.connect(MONGODB_URL, {
-        dbName: "CookCraft",
+        dbName: "cookcraft",
         bufferCommands: false,
         connectTimeoutMS: 30000,
     });
@@ -29,4 +29,4 @@ export const connect = async () => {
     cached.conn = await cached.promise;
 
     return cached.conn;
-}
+};
