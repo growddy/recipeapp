@@ -75,7 +75,7 @@ export async function POST(req: Request) {
         publicMetadata: {
           userId: newUser._id,
         },
-      });
+      })
     }
 
     return NextResponse.json({ message: "New user created", user: newUser });

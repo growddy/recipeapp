@@ -1,9 +1,18 @@
-import { currentUser } from '@clerk/nextjs/server'
+"use client";
+import { useUser } from '@clerk/nextjs'
+import React from "react";
 
-export default async function Page() {
-  const user = await currentUser()
+const ClientPage = () => {
+  const { isLoaded, isSignedIn, user } = useUser();
 
-  if (!user) return <div>Not signed in</div>
+  if (!isLoaded || !isSignedIn) {
+    return null;
+  }
+  return (
+    <div className="h-full flex flex-col items-center justify-center text-2xl">
+      Hello, {user.username} welcome to Clerk
+    </div>
+  );
+};
 
-  return <div>Welcome {user?.username}!</div>
-}
+export default ClientPage;
