@@ -1,7 +1,8 @@
 "use client";
+
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoadingSpinner from "../../components/loadingspinner";
 import { Card, CardContent, CardHeader, CardFooter } from "../../components/ui/card";
 import { generateRecipes } from "@/app/actions";
@@ -18,12 +19,32 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
-	async function onSubmit() {
-		setIsLoading(true)
-		const r = await generateRecipes(prompt)
-		setRecipes(r)
-		setIsLoading(false)
-	}
+  // Load recipes from localStorage when the component mounts
+  useEffect(() => {
+    const savedRecipes = localStorage.getItem("recipes");
+    if (savedRecipes) {
+      setRecipes(JSON.parse(savedRecipes));
+    }
+  }, []);
+
+  // Save recipes to localStorage whenever they change
+  useEffect(() => {
+    if (recipes.length > 0) {
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+    }
+  }, [recipes]);
+
+  async function onSubmit() {
+    setIsLoading(true);
+    const r = await generateRecipes(prompt);
+    setRecipes(r);
+    setIsLoading(false);
+  }
+
+  function clearRecipes() {
+    setRecipes([]);
+    localStorage.removeItem("recipes");
+  }
 
   return (
     <main>
@@ -37,6 +58,13 @@ export default function Home() {
         <Button type="submit" onClick={() => onSubmit()}>Generate!</Button>
       </div>
       {isLoading && <LoadingSpinner />}
+      <div className="mb-4">
+        {recipes.length > 0 && (
+          <Button onClick={clearRecipes} variant="secondary">
+            Clear Recipes
+          </Button>
+        )}
+      </div>
       <div className="grid md:grid-cols-3 gap-4">
         {recipes.length > 0 &&
           recipes.map((recipe, index) => (
