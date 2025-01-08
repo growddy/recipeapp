@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import { Navigation } from "./components/navigation"
+import { Navigation } from "./components/navigation";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,11 +31,11 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
         >
-          <header className="bg-slate-900 text-white p4 text-center">
+          <header className="bg-black text-white p-4 text-center">
             <Navigation />
           </header>
-          {children}
-          <footer className="bg-slate-900 text-white p4 text-center">
+          <main className="flex-grow">{children}</main>
+          <footer className="bg-slate-900 text-white p-4 text-center">
             <p> Created By Edward Jiang</p>
           </footer>
         </body>
