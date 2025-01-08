@@ -58,13 +58,6 @@ export default function Home() {
         <Button type="submit" onClick={() => onSubmit()}>Generate!</Button>
       </div>
       {isLoading && <LoadingSpinner />}
-      <div className="mb-4">
-        {recipes.length > 0 && (
-          <Button onClick={clearRecipes} variant="secondary">
-            Clear Recipes
-          </Button>
-        )}
-      </div>
       <div className="grid md:grid-cols-3 gap-4">
         {recipes.length > 0 &&
           recipes.map((recipe, index) => (
@@ -93,6 +86,13 @@ export default function Home() {
               </CardFooter>
             </Card>
           ))}
+          <div className="mb-4">
+        {recipes.length > 0 && (
+          <Button onClick={clearRecipes} variant="secondary">
+            Clear Recipes
+          </Button>
+        )}
+      </div>
       </div>
     </main>
   );
